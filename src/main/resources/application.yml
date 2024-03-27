@@ -9,7 +9,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         show-sql: true
@@ -23,6 +23,10 @@ spring:
           batch_size: 5
         default_batch_fetch_size: 1000
 
+  sql:
+    init:
+      mode: always
+
   data:
     redis:
       host: localhost
@@ -33,6 +37,7 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+
   h2:
     console:
       enabled: true

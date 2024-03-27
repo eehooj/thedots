@@ -1,4 +1,4 @@
-package com.example.tictoccroc.api.user.dmain.entity;
+package com.example.tictoccroc.api.member.dmain.entity;
 
 import com.example.tictoccroc.global.extension.EntityBaseExtension;
 import jakarta.persistence.Column;
@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "MEMBER")
 @Getter
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends EntityBaseExtension {
+public class Member extends EntityBaseExtension {
 
     @Column(name = "NAME", nullable = false)
     private String name;

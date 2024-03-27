@@ -1,6 +1,6 @@
 package com.example.tictoccroc.api.reservation.dmain.entity;
 
-import com.example.tictoccroc.api.user.dmain.entity.User;
+import com.example.tictoccroc.api.member.dmain.entity.Member;
 import com.example.tictoccroc.global.extension.EntityBaseExtension;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -32,6 +32,6 @@ public class Reservation extends EntityBaseExtension {
     private StoreLecture storeLecture;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 }

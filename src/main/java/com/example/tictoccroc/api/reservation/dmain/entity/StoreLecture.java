@@ -23,9 +23,6 @@ public class StoreLecture extends EntityBaseExtension {
     @Column(name = "LECTURE_DT")
     protected LocalDateTime lectureDt;
 
-    @Column(name = "MAX_COUNT", nullable = false)
-    private String maxCount;
-
     @ManyToOne
     @JoinColumn(name = "STORE_ID")
     private Store store;
