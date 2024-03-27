@@ -13,7 +13,7 @@ public enum ResultCode {
     SERVER_ERROR(INTERNAL_SERVER_ERROR, "처리에 실패했습니다."),
     VALUE_NOT_FOUND(NOT_FOUND, "데이터를 찾을 수 없습니다."),
     VALUE_BAD_REQUEST(BAD_REQUEST, "잘못된 요청입니다."),
-    ACCESS_DENIED(INTERNAL_SERVER_ERROR, "API 접근 권한이 없습니다.");
+    ALREADY_RESERVATION(BAD_REQUEST, "이미 예약한 수업입니다.");
 
     private final HttpStatus status;
     private final String message;

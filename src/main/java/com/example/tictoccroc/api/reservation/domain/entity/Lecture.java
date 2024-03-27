@@ -1,4 +1,4 @@
-package com.example.tictoccroc.api.reservation.dmain.entity;
+package com.example.tictoccroc.api.reservation.domain.entity;
 
 import com.example.tictoccroc.global.extension.EntityBaseExtension;
 import jakarta.persistence.Column;

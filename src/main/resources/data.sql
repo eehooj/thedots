@@ -20,3 +20,8 @@ insert into STORE_LECTURE values (1, 1, 1, '2024-03-29 14:00:00', now(), now()),
                                  (8, 1, 2, '2024-04-08 13:00:00', now(), now()),
                                  (9, 1, 2, '2024-04-02 16:00:00', now(), now()),
                                  (10, 1, 2, '2024-04-29 14:00:00', now(), now());
+
+insert into
+    RESERVATION (insert_dt, member_id, reservation_dt, status, store_lecture_id, update_dt, id)
+values
+    (now(), 1, '2024-03-29 14:00:00', 'APPROVAL', 1, now(), default)
