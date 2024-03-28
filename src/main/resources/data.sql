@@ -4,7 +4,7 @@ insert into STORE values (1, 'S001', '잠실점', '서울특별시 송파구 올
 
 insert into LECTURE values (1, 'L001', '도시농부', 1, now(), now()),
                            (2, 'L002', '드로잉', 20, now(), now()),
-                           (3, 'L003', '오감놀이', 20, now(), now());
+                           (3, 'L003', '오감 놀이', 20, now(), now());
 
 insert into MEMBER values (1, '부모1', 'parent1@aaaa.bbb', now(), now()),
                         (2, '부모2', 'parent2@aaaa.bbb', now(), now()),

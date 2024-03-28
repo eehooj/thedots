@@ -46,8 +46,8 @@ public class ReservationService {
                 .builder()
                 .reservationId(reservation.getId())
                 .lectureDt(reservation.getStoreLecture().getLectureDt())
-                .status(reservation.getStatus().name())
-                .storeLectureName(reservation.getStoreLecture().getLecture().getName())
+                .status(reservation.getStatus().getValue())
+                .lectureName(reservation.getStoreLecture().getLecture().getName())
                 .build();
     }
 

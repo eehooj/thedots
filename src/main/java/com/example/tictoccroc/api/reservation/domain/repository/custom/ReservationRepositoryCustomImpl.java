@@ -67,7 +67,6 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
                 .innerJoin(member)
                 .on(reservation.member.id.eq(member.id))
                 .where(
-                        lecture.code.eq("L002"),
                         lectureSearch(listRequest.getLectureCode()),
                         storeSearch(listRequest.getStoreCode()),
                         statusSearch(listRequest.getStatus())
@@ -75,12 +74,12 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
                 .fetch();
     }
 
-    private BooleanExpression statusSearch(ReservationStatus status) {
+    private BooleanExpression statusSearch(String status) {
         if (Objects.isNull(status)) {
             return null;
         }
 
-        return reservation.status.eq(APPROVAL);
+        return reservation.status.eq(ReservationStatus.find(status));
     }
 
     private BooleanExpression storeSearch(String code) {

@@ -1,5 +1,7 @@
 package com.example.tictoccroc.api.reservation.enumertion;
 
+import static java.util.Arrays.stream;
+
 public enum ReservationStatus {
 
     APPROVAL("승인"),
@@ -13,5 +15,12 @@ public enum ReservationStatus {
 
     public String getValue() {
         return value;
+    }
+
+    public static ReservationStatus find(String key) {
+        return stream(ReservationStatus.values())
+                .filter(item -> item.name().equalsIgnoreCase(key))
+                .findAny()
+                .orElse(null);
     }
 }
