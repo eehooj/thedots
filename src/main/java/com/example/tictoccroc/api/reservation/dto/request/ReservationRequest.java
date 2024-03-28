@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class CreateReservationRequest {
+public class ReservationRequest {
 
     private Long memberId;
 

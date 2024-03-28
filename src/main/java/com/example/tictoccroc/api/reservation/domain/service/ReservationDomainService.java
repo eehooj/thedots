@@ -25,12 +25,19 @@ public class ReservationDomainService {
         return reservationRepository.isAlreadyReservation(memberId, storeLectureId);
     }
 
-    public StoreLecture get(Long storeLectureId) {
+    public StoreLecture getStoreLecture(Long storeLectureId) {
         return storeLectureRepository
                 .findById(storeLectureId)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
+    public Reservation getReservation(Long reservaionId) {
+        return reservationRepository
+                .findById(reservaionId)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Transactional
     public Reservation create(Reservation reservation) {
         return reservationRepository.save(reservation);
     }

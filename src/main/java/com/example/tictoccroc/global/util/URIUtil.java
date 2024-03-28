@@ -6,5 +6,5 @@ import lombok.experimental.UtilityClass;
 public class URIUtil {
 
     public static final String RESEVATION = "/reservation";
-    public static final String RESEVATION_ID = "/reservation/{reservation_id}";
+    public static final String RESEVATION_ID = "/reservation/{reservationId}";
 }

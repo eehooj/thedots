@@ -8,6 +8,7 @@ import com.example.tictoccroc.global.exception.AlreadyReservationException;
 import com.example.tictoccroc.global.util.ResponseUtil;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,18 @@ public class ExceptionAdvice {
                 .forStatusAndDetail(
                         VALUE_BAD_REQUEST.getStatus(),
                         Objects.requireNonNull(exception.getBindingResult().getAllErrors().get(0).getDefaultMessage()));
+
+        createErrorLog(exception, problemDetail);
+
+        return ResponseUtil.error(problemDetail);
+    }
+
+    @ExceptionHandler(value = {BadRequestException.class})
+    public ResponseEntity<ResultResponse<ProblemDetail>> badRequestException(final BadRequestException exception) {
+        ProblemDetail problemDetail = ProblemDetail
+                .forStatusAndDetail(
+                        VALUE_BAD_REQUEST.getStatus(),
+                        VALUE_BAD_REQUEST.getMessage());
 
         createErrorLog(exception, problemDetail);
 

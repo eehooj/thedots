@@ -5,10 +5,11 @@ import com.example.tictoccroc.api.member.domain.service.MemberDomainService;
 import com.example.tictoccroc.api.reservation.domain.entity.Reservation;
 import com.example.tictoccroc.api.reservation.domain.entity.StoreLecture;
 import com.example.tictoccroc.api.reservation.domain.service.ReservationDomainService;
-import com.example.tictoccroc.api.reservation.dto.request.CreateReservationRequest;
+import com.example.tictoccroc.api.reservation.dto.request.ReservationRequest;
 import com.example.tictoccroc.api.reservation.dto.response.ReservationResponse;
 import com.example.tictoccroc.global.exception.AlreadyReservationException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +23,14 @@ public class ReservationService {
     private final ReservationDomainService reservationDomainService;
     private final MemberDomainService memberDomainService;
 
-    public ReservationResponse createReservation(CreateReservationRequest reservationRequest) {
+    /**
+     *  예약 하기
+     * @return ReservationResponse
+     */
+    @Transactional
+    public ReservationResponse createReservation(ReservationRequest reservationRequest) {
         Member member = memberDomainService.get(reservationRequest.getMemberId());
-        StoreLecture storeLecture = reservationDomainService.get(reservationRequest.getStoreLectureId());
+        StoreLecture storeLecture = reservationDomainService.getStoreLecture(reservationRequest.getStoreLectureId());
 
         // 이미 예약을 했던 사람인지 조회
         boolean isAlreadyReservation
@@ -46,5 +52,22 @@ public class ReservationService {
                     .storeLectureName(reservation.getStoreLecture().getLecture().getName())
                     .build();
         }
+    }
+
+    /**
+     * 예약 취소
+     * @return Long
+     */
+    @Transactional
+    public Long cancelReservation(Long memberId, Long reservationId) throws BadRequestException {
+        Reservation reservation = reservationDomainService.getReservation(reservationId);
+
+        if (!reservation.getMember().getId().equals(memberId)) {
+            throw new BadRequestException();
+        }
+
+        reservation.cancelReservation();
+
+        return reservation.getId();
     }
 }

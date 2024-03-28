@@ -13,6 +13,7 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
 
 import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatus.APPROVAL;
+import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatus.CANCEL;
 
 @Entity
 @Table(name = "RESERVATION")
@@ -46,5 +47,9 @@ public class Reservation extends EntityBaseExtension {
 
     public static Reservation createReservation(StoreLecture storeLecture, Member member) {
         return new Reservation(storeLecture, member);
+    }
+
+    public void cancelReservation() {
+        this.status = CANCEL;
     }
 }
