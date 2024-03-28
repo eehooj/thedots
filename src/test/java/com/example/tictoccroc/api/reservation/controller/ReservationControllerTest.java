@@ -135,7 +135,7 @@ class ReservationControllerTest {
                 .builder()
                 .storeCode("S003")
                 .lectureCode("L003")
-                .status(APPROVAL)
+                .status("APPROVAL")
                 .build();
         mockMvc
                 .perform(
