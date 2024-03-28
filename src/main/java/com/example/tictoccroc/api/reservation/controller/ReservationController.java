@@ -36,7 +36,7 @@ public class ReservationController {
 
     @Operation(summary = "예약 취소하기")
     @PatchMapping(RESERVATION_ID)
-    public ResponseEntity<ResultResponse<Long>> createReservation(
+    public ResponseEntity<ResultResponse<Long>> cancelReservation(
             @PathVariable Long reservationId, @RequestBody Long memberId) throws BadRequestException {
         return ResponseUtil.ok(reservationService.cancelReservation(memberId, reservationId));
     }
