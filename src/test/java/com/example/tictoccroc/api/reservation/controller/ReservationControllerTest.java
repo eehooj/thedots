@@ -2,7 +2,6 @@ package com.example.tictoccroc.api.reservation.controller;
 
 import com.example.tictoccroc.api.reservation.dto.request.ReservationListRequest;
 import com.example.tictoccroc.api.reservation.dto.request.ReservationRequest;
-import com.example.tictoccroc.api.reservation.enumertion.ReservationStatus;
 import com.example.tictoccroc.api.reservation.service.ReservationService;
 import com.example.tictoccroc.global.exception.ReservationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatus.APPROVAL;
 import static com.example.tictoccroc.global.util.URIUtil.RESERVATION;
-import static com.example.tictoccroc.global.util.URIUtil.RESERVATION_STORE;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
