@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-
 import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatus.APPROVAL;
 import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatus.CANCEL;
 
@@ -22,9 +20,6 @@ import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatu
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Reservation extends EntityBaseExtension {
-
-    @Column(name = "RESERVATION_DT")
-    private LocalDateTime reservationDt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS", nullable = false)
@@ -39,7 +34,6 @@ public class Reservation extends EntityBaseExtension {
     private Member member;
 
     private Reservation(StoreLecture storeLecture, Member member) {
-        this.reservationDt = storeLecture.getLectureDt();
         this.status = APPROVAL;
         this.storeLecture = storeLecture;
         this.member = member;

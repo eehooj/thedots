@@ -18,6 +18,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Lecture extends EntityBaseExtension {
 
+    @Column(name = "CODE", nullable = false)
+    private String code;
+
     @Column(name = "NAME", nullable = false)
     private String name;
 

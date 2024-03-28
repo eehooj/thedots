@@ -5,7 +5,9 @@ import com.example.tictoccroc.api.member.domain.service.MemberDomainService;
 import com.example.tictoccroc.api.reservation.domain.entity.Reservation;
 import com.example.tictoccroc.api.reservation.domain.entity.StoreLecture;
 import com.example.tictoccroc.api.reservation.domain.service.ReservationDomainService;
+import com.example.tictoccroc.api.reservation.dto.request.ReservationListRequest;
 import com.example.tictoccroc.api.reservation.dto.request.ReservationRequest;
+import com.example.tictoccroc.api.reservation.dto.response.ReservationListResponse;
 import com.example.tictoccroc.api.reservation.dto.response.ReservationResponse;
 import com.example.tictoccroc.global.exception.ReservationException;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static com.example.tictoccroc.global.common.enumeration.ResultCode.*;
 
@@ -42,7 +45,7 @@ public class ReservationService {
         return ReservationResponse
                 .builder()
                 .reservationId(reservation.getId())
-                .reservationDt(reservation.getReservationDt())
+                .lectureDt(reservation.getStoreLecture().getLectureDt())
                 .status(reservation.getStatus().name())
                 .storeLectureName(reservation.getStoreLecture().getLecture().getName())
                 .build();
@@ -92,5 +95,13 @@ public class ReservationService {
         reservation.cancelReservation();
 
         return reservation.getId();
+    }
+
+    /**
+     * 예약 조회
+     * @return List<ReservationListResponse>
+     */
+    public List<ReservationListResponse> reservationList(ReservationListRequest listRequest) {
+        return reservationDomainService.getStoreReservationList(listRequest);
     }
 }

@@ -5,6 +5,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class URIUtil {
 
-    public static final String RESEVATION = "/reservation";
-    public static final String RESEVATION_ID = "/reservation/{reservationId}";
+    public static final String RESERVATION = "/reservation";
+    public static final String RESERVATION_ID = "/reservation/{reservationId}";
 }

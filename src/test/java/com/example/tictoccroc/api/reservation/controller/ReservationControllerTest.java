@@ -1,6 +1,8 @@
 package com.example.tictoccroc.api.reservation.controller;
 
+import com.example.tictoccroc.api.reservation.dto.request.ReservationListRequest;
 import com.example.tictoccroc.api.reservation.dto.request.ReservationRequest;
+import com.example.tictoccroc.api.reservation.enumertion.ReservationStatus;
 import com.example.tictoccroc.api.reservation.service.ReservationService;
 import com.example.tictoccroc.global.exception.ReservationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,11 +14,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.example.tictoccroc.global.util.URIUtil.RESEVATION;
+import static com.example.tictoccroc.api.reservation.enumertion.ReservationStatus.APPROVAL;
+import static com.example.tictoccroc.global.util.URIUtil.RESERVATION;
+import static com.example.tictoccroc.global.util.URIUtil.RESERVATION_STORE;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -45,7 +48,7 @@ class ReservationControllerTest {
 
         mockMvc
                 .perform(
-                        post(RESEVATION)
+                        post(RESERVATION)
                                 .contentType(APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(reservationRequest))
                 )
@@ -64,7 +67,7 @@ class ReservationControllerTest {
 
         mockMvc
                 .perform(
-                        post(RESEVATION)
+                        post(RESERVATION)
                                 .contentType(APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(reservationRequest))
                 )
@@ -85,7 +88,7 @@ class ReservationControllerTest {
 
         mockMvc
                 .perform(
-                        post(RESEVATION)
+                        post(RESERVATION)
                                 .contentType(APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(reservationRequest))
                 )
@@ -106,7 +109,7 @@ class ReservationControllerTest {
 
         mockMvc
                 .perform(
-                        post(RESEVATION)
+                        post(RESERVATION)
                                 .contentType(APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(reservationRequest))
                 )
@@ -120,9 +123,27 @@ class ReservationControllerTest {
     void 예약_취소() throws Exception {
         mockMvc
                 .perform(
-                        patch(RESEVATION + "/2")
+                        patch(RESERVATION + "/2")
                                 .contentType(APPLICATION_JSON)
                                 .content("2")
+                )
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void 매장별_예약_목록_조회() throws Exception {
+        ReservationListRequest listRequest = ReservationListRequest
+                .builder()
+                .storeCode("S003")
+                .lectureCode("L003")
+                .status(APPROVAL)
+                .build();
+        mockMvc
+                .perform(
+                        get(RESERVATION)
+                                .contentType(APPLICATION_JSON)
+                                .flashAttr("listRequest", listRequest)
                 )
                 .andDo(print())
                 .andExpect(status().isOk());

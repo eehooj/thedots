@@ -25,7 +25,7 @@ public class ReservationResponse {
     @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime reservationDt;
+    private LocalDateTime lectureDt;
 
     private String status;
 

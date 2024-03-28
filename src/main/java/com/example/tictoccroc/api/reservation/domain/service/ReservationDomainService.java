@@ -6,10 +6,14 @@ import com.example.tictoccroc.api.reservation.domain.repository.LectureRepositor
 import com.example.tictoccroc.api.reservation.domain.repository.ReservationRepository;
 import com.example.tictoccroc.api.reservation.domain.repository.StoreLectureRepository;
 import com.example.tictoccroc.api.reservation.domain.repository.StoreRepository;
+import com.example.tictoccroc.api.reservation.dto.request.ReservationListRequest;
+import com.example.tictoccroc.api.reservation.dto.response.ReservationListResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional(readOnly = true)
 @Service
@@ -39,6 +43,10 @@ public class ReservationDomainService {
         return reservationRepository
                 .findById(reservationId)
                 .orElseThrow(EntityNotFoundException::new);
+    }
+
+    public List<ReservationListResponse> getStoreReservationList(ReservationListRequest listRequest) {
+        return reservationRepository.reservationList(listRequest);
     }
 
     @Transactional
