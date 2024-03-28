@@ -22,6 +22,6 @@ public class Lecture extends EntityBaseExtension {
     private String name;
 
     @Column(name = "MAX_COUNT", nullable = false)
-    private String maxCount;
+    private int maxCount;
 
 }

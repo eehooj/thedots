@@ -14,4 +14,6 @@ public class ReservationRequest {
     private Long memberId;
 
     private Long storeLectureId;
+
+    private Integer count;
 }

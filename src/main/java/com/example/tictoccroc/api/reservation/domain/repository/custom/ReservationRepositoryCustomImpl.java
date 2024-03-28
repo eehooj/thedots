@@ -25,4 +25,13 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
 
         return Objects.nonNull(query);
     }
+
+    @Override
+    public long countingReservation(Long storeLectureId) {
+        return factory.selectFrom(reservation)
+                .where(
+                        reservation.storeLecture.id.eq(storeLectureId),
+                        reservation.status.eq(APPROVAL)
+                ).stream().count();
+    }
 }

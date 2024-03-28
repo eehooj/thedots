@@ -25,15 +25,19 @@ public class ReservationDomainService {
         return reservationRepository.isAlreadyReservation(memberId, storeLectureId);
     }
 
+    public int countingReservation(Long storeLectureId) {
+        return (int) reservationRepository.countingReservation(storeLectureId);
+    }
+
     public StoreLecture getStoreLecture(Long storeLectureId) {
         return storeLectureRepository
                 .findById(storeLectureId)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    public Reservation getReservation(Long reservaionId) {
+    public Reservation getReservation(Long reservationId) {
         return reservationRepository
-                .findById(reservaionId)
+                .findById(reservationId)
                 .orElseThrow(EntityNotFoundException::new);
     }
 

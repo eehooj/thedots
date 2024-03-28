@@ -4,7 +4,7 @@ package com.example.tictoccroc.global.aop.advice;
 import com.example.tictoccroc.global.aop.domain.entity.ErrorLog;
 import com.example.tictoccroc.global.aop.domain.repository.ErrorLogRepository;
 import com.example.tictoccroc.global.common.dto.response.ResultResponse;
-import com.example.tictoccroc.global.exception.AlreadyReservationException;
+import com.example.tictoccroc.global.exception.ReservationException;
 import com.example.tictoccroc.global.util.ResponseUtil;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -73,11 +73,11 @@ public class ExceptionAdvice {
         return ResponseUtil.error(problemDetail);
     }
 
-    @ExceptionHandler({AlreadyReservationException.class})
-    public ResponseEntity<ResultResponse<ProblemDetail>> alreadyReservationException(final AlreadyReservationException exception) {
+    @ExceptionHandler({ReservationException.class})
+    public ResponseEntity<ResultResponse<ProblemDetail>> ReservationException(final ReservationException exception) {
         ProblemDetail problemDetail = ProblemDetail
                 .forStatusAndDetail(
-                        VALUE_NOT_FOUND.getStatus(), VALUE_NOT_FOUND.getMessage());
+                        VALUE_BAD_REQUEST.getStatus(), exception.getMessage());
 
         createErrorLog(exception, problemDetail);
 
