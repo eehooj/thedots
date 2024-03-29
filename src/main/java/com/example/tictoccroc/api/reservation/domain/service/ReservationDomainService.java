@@ -2,10 +2,8 @@ package com.example.tictoccroc.api.reservation.domain.service;
 
 import com.example.tictoccroc.api.reservation.domain.entity.Reservation;
 import com.example.tictoccroc.api.reservation.domain.entity.StoreLecture;
-import com.example.tictoccroc.api.reservation.domain.repository.LectureRepository;
 import com.example.tictoccroc.api.reservation.domain.repository.ReservationRepository;
 import com.example.tictoccroc.api.reservation.domain.repository.StoreLectureRepository;
-import com.example.tictoccroc.api.reservation.domain.repository.StoreRepository;
 import com.example.tictoccroc.api.reservation.dto.request.ReservationListRequest;
 import com.example.tictoccroc.api.reservation.dto.response.ReservationListResponse;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,9 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationDomainService {
 
-    private final LectureRepository lectureRepository;
     private final ReservationRepository reservationRepository;
-    private final StoreRepository storeRepository;
     private final StoreLectureRepository storeLectureRepository;
 
     public boolean isAlreadyReservation(Long memberId, Long storeLectureId) {
